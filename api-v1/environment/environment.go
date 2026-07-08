@@ -12,12 +12,18 @@ type EnvironmentConfiguration struct {
 	GoogleProject       string `mapstructure:"GOOGLE_PROJECT"`
 	GoogleCredentials   string `mapstructure:"GOOGLE_CREDENTIALS"`
 	GoogleMapsAPIKey    string `mapstructure:"GOOGLE_MAPS_API_KEY"`
+	GoogleAi            string `mapstructure:"GOOGLE_AI"`
 	BunnyVideoKey       string `mapstructure:"BUNNY_VIDEO_KEY"`
 	BunnyVideoLibraryID string `mapstructure:"BUNNY_VIDEO_LIBRARY_ID"`
 	BunnyStorageKey     string `mapstructure:"BUNNY_STORAGE_KEY"`
 	BunnyStorageZone    string `mapstructure:"BUNNY_STORAGE_ZONE"`
 	BunnyStorageRegion  string `mapstructure:"BUNNY_STORAGE_REGION"`
 	BunnyStorageCDN     string `mapstructure:"BUNNY_STORAGE_CDN"`
+	SendGrid            string `mapstructure:"SENDGRID"`
+	PostHog             string `mapstructure:"POSTHOG"`
+	TwilioAccountSID    string `mapstructure:"TWILIO_ACCOUNT_SID"`
+	TwilioAuthToken     string `mapstructure:"TWILIO_AUTH_TOKEN"`
+	TwilioFromPhone     string `mapstructure:"TWILIO_FROM_PHONE"`
 }
 
 func SetEnvironment(env string) (cfg EnvironmentConfiguration, err error) {

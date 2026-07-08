@@ -41,11 +41,16 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
+
+		// emails.SetApiKey(cfg.SendGrid)
+		// posthog.SetApiKey(cfg.PostHog)
+		// gemini.SetApiKey(cfg.GoogleAi)
+		// places.SetClient(cfg.GoogleMapsAPIKey)
 		// auth.SetSupabaseSecret(cfg.SupabaseSecret)
 		// auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
-		// places.SetClient(cfg.GoogleMapsAPIKey)
-		// files.SetClientGCP(cfg.GoogleCredentials, cfg.GoogleProject, cfg.GoogleBucket)
 		// bunny.SetBunnyVideoClient(cfg.BunnyVideoKey, cfg.BunnyVideoLibraryID)
+		// sms.SetClient(cfg.TwilioAccountSID, cfg.TwilioAuthToken, cfg.TwilioFromPhone)
+		// files.SetClientGCP(cfg.GoogleCredentials, cfg.GoogleProject, cfg.GoogleBucket)
 		// bunny.SetBunnyStorageClient(cfg.BunnyStorageKey, cfg.BunnyStorageZone, cfg.BunnyStorageRegion, cfg.BunnyStorageCDN)
 
 		mutations.UserHook()
