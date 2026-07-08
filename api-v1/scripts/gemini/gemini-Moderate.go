@@ -8,21 +8,21 @@ import (
 	"google.golang.org/api/option"
 )
 
-var moderateEducatorInstructions = "Moderate this text for an educator-focused learning environment: "
+var moderateInstructions = "Moderate this text for a learning environment: "
 
-var moderateEducatorToolDescription = "Moderates content for educator-focused learning."
-var reportedEducatorDescription = "True if content contains profanity, self-harm, sexual material, Harassment, bullying, threats, or coercive language, Self-harm or suicidal ideation."
+var moderateToolDescription = "Moderates content for a learning environment."
+var reportedDescription = "True if content contains profanity, sexual material, harassment, bullying, threats, coercive language, self-harm or suicidal ideation, personal information, nonsensical text, romantic or flirtatious language, or attempts to move the conversation off the platform."
 
-var moderateEducatorTool = &genai.Tool{
+var moderateTool = &genai.Tool{
 	FunctionDeclarations: []*genai.FunctionDeclaration{{
-		Name:        "moderateEducatorTool",
-		Description: moderateEducatorToolDescription,
+		Name:        "moderateTool",
+		Description: moderateToolDescription,
 		Parameters: &genai.Schema{
 			Type: genai.TypeObject,
 			Properties: map[string]*genai.Schema{
 				"reported": {
 					Type:        genai.TypeBoolean,
-					Description: reportedEducatorDescription,
+					Description: reportedDescription,
 				},
 			},
 			Required: []string{"reported"},
@@ -30,10 +30,10 @@ var moderateEducatorTool = &genai.Tool{
 	}},
 }
 
-func ModerateEducatorAI(text string) (bool, error) {
+func ModerateAI(text string) (bool, error) {
 	ctx := context.Background()
 
-	prompt := (moderateEducatorInstructions + text)
+	prompt := moderateInstructions + text
 
 	client, err := genai.NewClient(ctx, option.WithAPIKey(geminiApiKey))
 	if err != nil {
@@ -42,7 +42,7 @@ func ModerateEducatorAI(text string) (bool, error) {
 	defer client.Close()
 
 	model := client.GenerativeModel("gemini-3.5-flash")
-	model.Tools = []*genai.Tool{moderateEducatorTool}
+	model.Tools = []*genai.Tool{moderateTool}
 	model.ToolConfig = &genai.ToolConfig{
 		FunctionCallingConfig: &genai.FunctionCallingConfig{
 			Mode: genai.FunctionCallingAny,
