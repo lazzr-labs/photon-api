@@ -19,19 +19,15 @@ type StructuredFormat struct {
 }
 
 func (client *MapsClientService) PlacesGet(search string) ([]*AddressPlaceAutocomplete, error) {
-	if client == nil || client.client == nil {
-		return nil, ErrClientNotConfigured
-	}
-
 	if search == "" {
-		return nil, ErrSearchRequired
+		return nil, errors.New("address cannot be empty")
 	}
 
 	ctx := context.Background()
 
 	autocompleteRequest := &maps.PlaceAutocompleteRequest{
 		Input: search,
-		Types: maps.AutocompletePlaceTypeGeocode,
+		Types: maps.AutocompletePlaceTypeCities,
 	}
 
 	autocomplete, err := client.client.PlaceAutocomplete(ctx, autocompleteRequest)
@@ -40,7 +36,7 @@ func (client *MapsClientService) PlacesGet(search string) ([]*AddressPlaceAutoco
 	}
 
 	if len(autocomplete.Predictions) == 0 {
-		return nil, ErrPlacesNotFound
+		return nil, errors.New("no address found")
 	}
 
 	var places []*AddressPlaceAutocomplete

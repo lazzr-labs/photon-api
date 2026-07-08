@@ -2,6 +2,9 @@ package places
 
 import (
 	"context"
+	"errors"
+	"strings"
+	"unicode"
 
 	"googlemaps.github.io/maps"
 )
@@ -18,12 +21,8 @@ type AddressPlace struct {
 }
 
 func (client *MapsClientService) PlaceGet(placeID string) (*AddressPlace, error) {
-	if client == nil || client.client == nil {
-		return nil, ErrClientNotConfigured
-	}
-
 	if placeID == "" {
-		return nil, ErrPlaceIDRequired
+		return nil, errors.New("place ID cannot be empty")
 	}
 
 	ctx := context.Background()
@@ -40,7 +39,7 @@ func (client *MapsClientService) PlaceGet(placeID string) (*AddressPlace, error)
 
 	details, err := client.client.PlaceDetails(ctx, detailsRequest)
 	if err != nil {
-		return nil, ErrPlaceDetailsFailed
+		return nil, errors.New("failed to get place details")
 	}
 
 	components := make(map[string]string)
@@ -61,14 +60,26 @@ func (client *MapsClientService) PlaceGet(placeID string) (*AddressPlace, error)
 	latitude = details.Geometry.Location.Lat
 	longitude = details.Geometry.Location.Lng
 
+	formattedAddress := formattedAddressClean(details.FormattedAddress)
+
 	return &AddressPlace{
 		PlaceID:          details.PlaceID,
-		Description:      details.FormattedAddress,
-		FormattedAddress: details.FormattedAddress,
+		Description:      formattedAddress,
+		FormattedAddress: formattedAddress,
 		Components:       components,
 		Latitude:         latitude,
 		Longitude:        longitude,
 		Country:          countryLongName,
 		Alpha:            countryShortName,
 	}, nil
+}
+
+func formattedAddressClean(address string) string {
+	address = strings.Map(func(r rune) rune {
+		if unicode.IsDigit(r) {
+			return -1
+		}
+		return r
+	}, address)
+	return strings.ReplaceAll(address, " ,", ",")
 }
