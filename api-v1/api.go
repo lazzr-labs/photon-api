@@ -18,7 +18,6 @@ import (
 	"api-go/routes/home_api"
 	"api-go/routes/places_api"
 	"api-go/routes/users_api"
-	"api-go/scripts/emails"
 	"api-go/utils/auth"
 	"api-go/utils/cache"
 	"api-go/utils/db"
@@ -42,9 +41,7 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
-		if err := emails.SetClient(cfg.SendGridAPIKey, cfg.EmailFromName, cfg.EmailFromEmail); err != nil {
-			panic("failed to configure email client")
-		}
+		// emails.SetApiKey(cfg.SENDGRID)
 		// places.SetClient(cfg.GoogleMapsAPIKey)
 		// auth.SetSupabaseSecret(cfg.SupabaseSecret)
 		// auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
