@@ -1,7 +1,7 @@
 services:
   api-service:
     build: .
-    image: ghcr.io/lazzr-labs/photon:ute1777663306
+    image: ghcr.io/lazzr-labs/photon:ute1783528866
     volumes:
       - .:/code
     ports:

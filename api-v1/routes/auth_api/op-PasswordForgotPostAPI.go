@@ -8,6 +8,7 @@ import (
 	"github.com/danielgtaylor/huma/v2"
 
 	"api-go/ent/user"
+	"api-go/scripts/emails"
 	"api-go/scripts/generator"
 	"api-go/utils/cache"
 	"api-go/utils/db"
@@ -37,6 +38,8 @@ func PasswordForgotPostAPI(ctx context.Context, input *PasswordForgotPostInput) 
 	cache.SetKey(code, strconv.Itoa(userObj.ID), 21600)
 
 	fmt.Println(code)
+
+	emails.ForgotPasswordEmail(userObj.Email, userObj.Name, code)
 
 	response := &PasswordForgotPostOutput{}
 	response.Body.Message = "Code sent to email."

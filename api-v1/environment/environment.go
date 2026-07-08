@@ -18,6 +18,7 @@ type EnvironmentConfiguration struct {
 	BunnyStorageZone    string `mapstructure:"BUNNY_STORAGE_ZONE"`
 	BunnyStorageRegion  string `mapstructure:"BUNNY_STORAGE_REGION"`
 	BunnyStorageCDN     string `mapstructure:"BUNNY_STORAGE_CDN"`
+	SENDGRID            string `mapstructure:"SENDGRID"`
 }
 
 func SetEnvironment(env string) (cfg EnvironmentConfiguration, err error) {
