@@ -18,6 +18,7 @@ import (
 	"api-go/routes/home_api"
 	"api-go/routes/places_api"
 	"api-go/routes/users_api"
+	"api-go/scripts/emails"
 	"api-go/utils/auth"
 	"api-go/utils/cache"
 	"api-go/utils/db"
@@ -41,7 +42,7 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
-		// emails.SetApiKey(cfg.SENDGRID)
+		emails.SetApiKey(cfg.SENDGRID)
 		// places.SetClient(cfg.GoogleMapsAPIKey)
 		// auth.SetSupabaseSecret(cfg.SupabaseSecret)
 		// auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
