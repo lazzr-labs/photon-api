@@ -27,7 +27,7 @@ func (client *MapsClientService) PlacesGet(search string) ([]*AddressPlaceAutoco
 
 	autocompleteRequest := &maps.PlaceAutocompleteRequest{
 		Input: search,
-		Types: maps.AutocompletePlaceTypeCities,
+		Types: maps.AutocompletePlaceTypeGeocode,
 	}
 
 	autocomplete, err := client.client.PlaceAutocomplete(ctx, autocompleteRequest)
