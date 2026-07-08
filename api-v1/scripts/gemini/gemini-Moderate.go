@@ -8,10 +8,10 @@ import (
 	"google.golang.org/api/option"
 )
 
-var moderateInstructions = "Moderate this text for a learning environment: "
+var moderateInstructions = "Moderate this text: "
 
-var moderateToolDescription = "Moderates content for a learning environment."
-var reportedDescription = "True if content contains profanity, sexual material, harassment, bullying, threats, coercive language, self-harm or suicidal ideation, personal information, nonsensical text, romantic or flirtatious language, or attempts to move the conversation off the platform."
+var moderateToolDescription = "Moderates text content."
+var reportedDescription = "True if the text should be reported for unsafe, inappropriate, harmful, or abusive content."
 
 var moderateTool = &genai.Tool{
 	FunctionDeclarations: []*genai.FunctionDeclaration{{
