@@ -2,6 +2,7 @@ package places_api
 
 import (
 	"context"
+	"errors"
 
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/jinzhu/copier"
@@ -33,6 +34,12 @@ type PlaceGetOutput struct {
 func PlaceGetAPI(ctx context.Context, input *PlaceGetInput) (*PlaceGetOutput, error) {
 	placeObj, err := places.MapsClient.PlaceGet(input.PlaceID)
 	if err != nil {
+		if errors.Is(err, places.ErrClientNotConfigured) {
+			return nil, huma.Error503ServiceUnavailable("Places service is not configured.")
+		}
+		if errors.Is(err, places.ErrPlaceIDRequired) {
+			return nil, huma.Error400BadRequest("Place ID is required.")
+		}
 		return nil, huma.Error404NotFound("Place not found.")
 	}
 

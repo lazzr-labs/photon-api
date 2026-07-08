@@ -2,7 +2,6 @@ package places
 
 import (
 	"context"
-	"errors"
 
 	"googlemaps.github.io/maps"
 )
@@ -19,8 +18,12 @@ type AddressPlace struct {
 }
 
 func (client *MapsClientService) PlaceGet(placeID string) (*AddressPlace, error) {
+	if client == nil || client.client == nil {
+		return nil, ErrClientNotConfigured
+	}
+
 	if placeID == "" {
-		return nil, errors.New("place ID cannot be empty")
+		return nil, ErrPlaceIDRequired
 	}
 
 	ctx := context.Background()
@@ -37,7 +40,7 @@ func (client *MapsClientService) PlaceGet(placeID string) (*AddressPlace, error)
 
 	details, err := client.client.PlaceDetails(ctx, detailsRequest)
 	if err != nil {
-		return nil, errors.New("failed to get place details")
+		return nil, ErrPlaceDetailsFailed
 	}
 
 	components := make(map[string]string)

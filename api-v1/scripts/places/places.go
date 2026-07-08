@@ -19,8 +19,12 @@ type StructuredFormat struct {
 }
 
 func (client *MapsClientService) PlacesGet(search string) ([]*AddressPlaceAutocomplete, error) {
+	if client == nil || client.client == nil {
+		return nil, ErrClientNotConfigured
+	}
+
 	if search == "" {
-		return nil, errors.New("address cannot be empty")
+		return nil, ErrSearchRequired
 	}
 
 	ctx := context.Background()
@@ -36,7 +40,7 @@ func (client *MapsClientService) PlacesGet(search string) ([]*AddressPlaceAutoco
 	}
 
 	if len(autocomplete.Predictions) == 0 {
-		return nil, errors.New("no address found")
+		return nil, ErrPlacesNotFound
 	}
 
 	var places []*AddressPlaceAutocomplete
