@@ -18,10 +18,6 @@ import (
 	"api-go/routes/home_api"
 	"api-go/routes/places_api"
 	"api-go/routes/users_api"
-	"api-go/scripts/emails"
-	"api-go/scripts/gemini"
-	"api-go/scripts/posthog"
-	"api-go/scripts/sms"
 	"api-go/utils/auth"
 	"api-go/utils/cache"
 	"api-go/utils/db"
@@ -45,15 +41,15 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
-		emails.SetApiKey(cfg.SENDGRID)
-		gemini.SetApiKey(cfg.GOOGLE_AI)
-		posthog.SetApiKey(cfg.POSTHOG)
-		sms.SetClient(cfg.TwilioAccountSID, cfg.TwilioAuthToken, cfg.TwilioFromPhone)
+		// emails.SetApiKey(cfg.SENDGRID)
+		// posthog.SetApiKey(cfg.POSTHOG)
+		// gemini.SetApiKey(cfg.GOOGLE_AI)
 		// places.SetClient(cfg.GoogleMapsAPIKey)
 		// auth.SetSupabaseSecret(cfg.SupabaseSecret)
 		// auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
-		// files.SetClientGCP(cfg.GoogleCredentials, cfg.GoogleProject, cfg.GoogleBucket)
 		// bunny.SetBunnyVideoClient(cfg.BunnyVideoKey, cfg.BunnyVideoLibraryID)
+		// sms.SetClient(cfg.TwilioAccountSID, cfg.TwilioAuthToken, cfg.TwilioFromPhone)
+		// files.SetClientGCP(cfg.GoogleCredentials, cfg.GoogleProject, cfg.GoogleBucket)
 		// bunny.SetBunnyStorageClient(cfg.BunnyStorageKey, cfg.BunnyStorageZone, cfg.BunnyStorageRegion, cfg.BunnyStorageCDN)
 
 		mutations.UserHook()
