@@ -43,7 +43,7 @@ func main() {
 		cache.SetClient(cfg.Valkey)
 		// emails.SetApiKey(cfg.SENDGRID)
 		// posthog.SetApiKey(cfg.POSTHOG)
-		// gemini.SetApiKey(cfg.GOOGLE_AI)
+		// gemini.SetApiKey(cfg.GoogleAi)
 		// places.SetClient(cfg.GoogleMapsAPIKey)
 		// auth.SetSupabaseSecret(cfg.SupabaseSecret)
 		// auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
