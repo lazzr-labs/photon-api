@@ -3,8 +3,6 @@ package places
 import (
 	"context"
 	"errors"
-	"strings"
-	"unicode"
 
 	"googlemaps.github.io/maps"
 )
@@ -60,26 +58,14 @@ func (client *MapsClientService) PlaceGet(placeID string) (*AddressPlace, error)
 	latitude = details.Geometry.Location.Lat
 	longitude = details.Geometry.Location.Lng
 
-	formattedAddress := formattedAddressClean(details.FormattedAddress)
-
 	return &AddressPlace{
 		PlaceID:          details.PlaceID,
-		Description:      formattedAddress,
-		FormattedAddress: formattedAddress,
+		Description:      details.FormattedAddress,
+		FormattedAddress: details.FormattedAddress,
 		Components:       components,
 		Latitude:         latitude,
 		Longitude:        longitude,
 		Country:          countryLongName,
 		Alpha:            countryShortName,
 	}, nil
-}
-
-func formattedAddressClean(address string) string {
-	address = strings.Map(func(r rune) rune {
-		if unicode.IsDigit(r) {
-			return -1
-		}
-		return r
-	}, address)
-	return strings.ReplaceAll(address, " ,", ",")
 }
