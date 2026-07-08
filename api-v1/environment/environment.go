@@ -12,6 +12,9 @@ type EnvironmentConfiguration struct {
 	GoogleProject       string `mapstructure:"GOOGLE_PROJECT"`
 	GoogleCredentials   string `mapstructure:"GOOGLE_CREDENTIALS"`
 	GoogleMapsAPIKey    string `mapstructure:"GOOGLE_MAPS_API_KEY"`
+	SendGridAPIKey      string `mapstructure:"SENDGRID_API_KEY"`
+	EmailFromName       string `mapstructure:"EMAIL_FROM_NAME"`
+	EmailFromEmail      string `mapstructure:"EMAIL_FROM_EMAIL"`
 	BunnyVideoKey       string `mapstructure:"BUNNY_VIDEO_KEY"`
 	BunnyVideoLibraryID string `mapstructure:"BUNNY_VIDEO_LIBRARY_ID"`
 	BunnyStorageKey     string `mapstructure:"BUNNY_STORAGE_KEY"`
