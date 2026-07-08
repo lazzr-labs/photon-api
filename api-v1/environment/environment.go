@@ -19,6 +19,11 @@ type EnvironmentConfiguration struct {
 	BunnyStorageRegion  string `mapstructure:"BUNNY_STORAGE_REGION"`
 	BunnyStorageCDN     string `mapstructure:"BUNNY_STORAGE_CDN"`
 	SENDGRID            string `mapstructure:"SENDGRID"`
+	GOOGLE_AI           string `mapstructure:"GOOGLE_AI"`
+	POSTHOG             string `mapstructure:"POSTHOG"`
+	TwilioAccountSID    string `mapstructure:"TWILIO_ACCOUNT_SID"`
+	TwilioAuthToken     string `mapstructure:"TWILIO_AUTH_TOKEN"`
+	TwilioFromPhone     string `mapstructure:"TWILIO_FROM_PHONE"`
 }
 
 func SetEnvironment(env string) (cfg EnvironmentConfiguration, err error) {

@@ -18,6 +18,10 @@ import (
 	"api-go/routes/home_api"
 	"api-go/routes/places_api"
 	"api-go/routes/users_api"
+	"api-go/scripts/emails"
+	"api-go/scripts/gemini"
+	"api-go/scripts/posthog"
+	"api-go/scripts/sms"
 	"api-go/utils/auth"
 	"api-go/utils/cache"
 	"api-go/utils/db"
@@ -41,7 +45,10 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
-		// emails.SetApiKey(cfg.SENDGRID)
+		emails.SetApiKey(cfg.SENDGRID)
+		gemini.SetApiKey(cfg.GOOGLE_AI)
+		posthog.SetApiKey(cfg.POSTHOG)
+		sms.SetClient(cfg.TwilioAccountSID, cfg.TwilioAuthToken, cfg.TwilioFromPhone)
 		// places.SetClient(cfg.GoogleMapsAPIKey)
 		// auth.SetSupabaseSecret(cfg.SupabaseSecret)
 		// auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
