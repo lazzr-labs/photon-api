@@ -19,8 +19,8 @@ type EnvironmentConfiguration struct {
 	BunnyStorageZone    string `mapstructure:"BUNNY_STORAGE_ZONE"`
 	BunnyStorageRegion  string `mapstructure:"BUNNY_STORAGE_REGION"`
 	BunnyStorageCDN     string `mapstructure:"BUNNY_STORAGE_CDN"`
-	SENDGRID            string `mapstructure:"SENDGRID"`
-	POSTHOG             string `mapstructure:"POSTHOG"`
+	SendGrid            string `mapstructure:"SENDGRID"`
+	PostHog             string `mapstructure:"POSTHOG"`
 	TwilioAccountSID    string `mapstructure:"TWILIO_ACCOUNT_SID"`
 	TwilioAuthToken     string `mapstructure:"TWILIO_AUTH_TOKEN"`
 	TwilioFromPhone     string `mapstructure:"TWILIO_FROM_PHONE"`

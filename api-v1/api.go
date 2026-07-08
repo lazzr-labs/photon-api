@@ -41,8 +41,9 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
-		// emails.SetApiKey(cfg.SENDGRID)
-		// posthog.SetApiKey(cfg.POSTHOG)
+
+		// emails.SetApiKey(cfg.SendGrid)
+		// posthog.SetApiKey(cfg.PostHog)
 		// gemini.SetApiKey(cfg.GoogleAi)
 		// places.SetClient(cfg.GoogleMapsAPIKey)
 		// auth.SetSupabaseSecret(cfg.SupabaseSecret)
