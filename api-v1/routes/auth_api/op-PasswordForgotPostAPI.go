@@ -2,6 +2,7 @@ package auth_api
 
 import (
 	"context"
+	"fmt"
 	"strconv"
 
 	"github.com/danielgtaylor/huma/v2"
@@ -35,6 +36,9 @@ func PasswordForgotPostAPI(ctx context.Context, input *PasswordForgotPostInput) 
 
 	code := generator.RandomLetters(3) + strconv.Itoa(userObj.ID)
 	cache.SetKey(code, strconv.Itoa(userObj.ID), 21600)
+
+	fmt.Println(code)
+
 	emails.ForgotPasswordEmail(userObj.Email, userObj.Name, code)
 
 	response := &PasswordForgotPostOutput{}
