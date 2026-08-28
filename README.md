@@ -22,7 +22,7 @@
 
     asdf plugin add golang
 
-    asdf install golang 1.25.0
+    asdf install golang 1.27.0
 
 **commands**
 
