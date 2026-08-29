@@ -4,7 +4,7 @@ go 1.27.0
 
 require (
 	cloud.google.com/go/storage v1.58.0
-	entgo.io/ent v0.14.6
+	entgo.io/ent v0.14.5
 	github.com/MicahParks/keyfunc/v2 v2.1.0
 	github.com/danielgtaylor/huma/v2 v2.39.1
 	github.com/go-co-op/gocron/v2 v2.22.0
