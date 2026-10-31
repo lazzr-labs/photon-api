@@ -80,18 +80,18 @@ gcp-auth-terraform:
 	gcloud auth application-default login
 
 gcp-create-vpc:
-	gcloud compute networks create vpc-v1 --subnet-mode=auto --project [project]-gcp
+	gcloud compute networks create vpc-v1 --subnet-mode=auto --project [cloud]-gcp
 
 gcp-delete-vpc:
-	gcloud compute networks delete vpc-v1 --quiet --project [project]-gcp
+	gcloud compute networks delete vpc-v1 --quiet --project [cloud]-gcp
 
 gcp-auth-gke:
-	gcloud container clusters get-credentials gke-v1-standard --zone us-central1-a --project [project]-gcp
+	gcloud container clusters get-credentials [cloud]-gke-v1-standard --zone us-central1-a --project [cloud]-gcp
 
 # argocd
 argocd-create:
-	kubectl create namespace api-stag
-	kubectl create namespace api-prod
+	kubectl create namespace [project]-api-stag
+	kubectl create namespace [project]-api-prod
 	kubectl create namespace argocd
 	kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 

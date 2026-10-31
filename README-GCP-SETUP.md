@@ -4,8 +4,8 @@
 
 **1. Create Service Account:**
 
-    gcloud iam service-accounts create [project]-api --display-name="[project]-api" --project [project]-gcp
-    gcloud projects add-iam-policy-binding [project]-gcp --member="serviceAccount:[service_account_email]" --role="roles/storage.admin"
+    gcloud iam service-accounts create [project]-api --display-name="[project]-api" --project [cloud]-gcp
+    gcloud projects add-iam-policy-binding [cloud]-gcp --member="serviceAccount:[service_account_email]" --role="roles/storage.admin"
     gcloud iam service-accounts keys create --iam-account=[service_account_email] gcp.json
 
 **2. Convert gcp.json to base64:**
@@ -16,7 +16,7 @@
 
     1. Go to Cloud Storage
     2. Create a new bucket
-    3. Set bucket name (e.g. [project]-api-stag)
+    3. Set bucket name (e.g. [project]-api-stag or [project]-api-prod)
     4. Choose Location Type (e.g. Multi-region)
     5. Choose Standard default storage class
     6. Choose Uniform access control
@@ -53,7 +53,8 @@ postgres://postgres:[PASSWORD]@[IP_ADDRESS]:5432/postgres?sslmode=disable
 
 **1. Create Static IP Address:**
 
-    gcloud compute addresses create api-stag-ip --global --project [project]-gcp
+    gcloud compute addresses create [project]-api-stag-ip --global --project [cloud]-gcp
+    gcloud compute addresses create [project]-api-prod-ip --global --project [cloud]-gcp
 
 **2. Subdomain**
 
