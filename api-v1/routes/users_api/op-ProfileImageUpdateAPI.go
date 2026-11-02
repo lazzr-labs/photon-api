@@ -2,8 +2,6 @@ package users_api
 
 import (
 	"context"
-	"io"
-	"net/http"
 	"strconv"
 	"time"
 
@@ -12,8 +10,11 @@ import (
 
 	"api-go/models"
 	"api-go/scripts/bunny"
+	"api-go/scripts/images"
 	"api-go/utils/auth"
 )
+
+const profileImageMaxDimension = 512
 
 type ProfileImageUpdateInput struct {
 	auth.AuthParam
@@ -39,20 +40,19 @@ type ProfileImageUpdateOutput struct {
 
 func ProfileImageUpdateAPI(ctx context.Context, input *ProfileImageUpdateInput) (*ProfileImageUpdateOutput, error) {
 	imageData := input.RawBody.Data()
-	image, err := io.ReadAll(imageData.Image)
+	image, err := images.OptimizeJPEG(imageData.Image, profileImageMaxDimension)
 	if err != nil {
-		return nil, huma.Error400BadRequest("Unable to read image.")
+		return nil, huma.Error400BadRequest(err.Error())
 	}
 
-	contentType := http.DetectContentType(image)
-	fileDir := "users/" + strconv.FormatInt(time.Now().UnixNano(), 10) + "-avatar.png"
-	fileUrl, err := bunny.UploadMedia(fileDir, image, contentType)
+	fileDir := "users/" + strconv.FormatInt(time.Now().UnixNano(), 10) + "-avatar.jpg"
+	fileURL, err := bunny.UploadMedia(fileDir, image, "image/jpeg")
 	if err != nil {
 		return nil, huma.Error400BadRequest("Unable to upload image.")
 	}
 
 	profileObj, err := input.User.Update().
-		SetImage(fileUrl).
+		SetImage(fileURL).
 		Save(ctx)
 	if err != nil {
 		return nil, huma.Error400BadRequest("Unable to update user.")
