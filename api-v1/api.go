@@ -18,7 +18,6 @@ import (
 	"api-go/routes/home_api"
 	"api-go/routes/places_api"
 	"api-go/routes/users_api"
-	"api-go/scripts/bunny"
 	"api-go/utils/auth"
 	"api-go/utils/cache"
 	"api-go/utils/db"
@@ -42,7 +41,6 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
-		bunny.SetBunnyStorageClient(cfg.BunnyStorageKey, cfg.BunnyStorageZone, cfg.BunnyStorageRegion, cfg.BunnyStorageCDN)
 
 		// emails.SetApiKey(cfg.SendGrid)
 		// posthog.SetApiKey(cfg.PostHog)
@@ -53,6 +51,7 @@ func main() {
 		// bunny.SetBunnyVideoClient(cfg.BunnyVideoKey, cfg.BunnyVideoLibraryID)
 		// sms.SetClient(cfg.TwilioAccountSID, cfg.TwilioAuthToken, cfg.TwilioFromPhone)
 		// files.SetClientGCP(cfg.GoogleCredentials, cfg.GoogleProject, cfg.GoogleBucket)
+		// bunny.SetBunnyStorageClient(cfg.BunnyStorageKey, cfg.BunnyStorageZone, cfg.BunnyStorageRegion, cfg.BunnyStorageCDN)
 
 		mutations.UserHook()
 
