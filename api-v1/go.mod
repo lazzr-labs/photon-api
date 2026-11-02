@@ -12,6 +12,7 @@ require (
 	github.com/google/generative-ai-go v0.20.1
 	github.com/jackc/pgx/v5 v5.10.0
 	github.com/jinzhu/copier v0.4.0
+	github.com/kovidgoyal/imaging v1.8.23
 	github.com/labstack/echo/v5 v5.3.1
 	github.com/posthog/posthog-go v1.6.3
 	github.com/sendgrid/sendgrid-go v3.16.1+incompatible
@@ -72,6 +73,8 @@ require (
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jonboulle/clockwork v0.5.0 // indirect
+	github.com/kovidgoyal/go-parallel v1.1.1 // indirect
+	github.com/kovidgoyal/go-shm v1.0.0 // indirect
 	github.com/labstack/echo/v4 v4.15.4 // indirect
 	github.com/labstack/gommon v0.5.0 // indirect
 	github.com/mattn/go-colorable v0.1.15 // indirect
@@ -84,6 +87,7 @@ require (
 	github.com/puzpuzpuz/xsync/v3 v3.5.1 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
+	github.com/rwcarlsen/goexif v0.0.0-20190401172101-9e8deecbddbd // indirect
 	github.com/sagikazarmark/locafero v0.12.0 // indirect
 	github.com/sendgrid/rest v2.6.9+incompatible // indirect
 	github.com/spf13/afero v1.15.0 // indirect
@@ -111,6 +115,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.46.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/exp v0.0.0-20251023183803-a4bb9ffd2546 // indirect
+	golang.org/x/image v0.44.0 // indirect
 	golang.org/x/mod v0.40.0 // indirect
 	golang.org/x/net v0.58.0 // indirect
 	golang.org/x/oauth2 v0.34.0 // indirect
